@@ -1,0 +1,11 @@
+{
+  "name": "midi_seq",
+  "repository": "git@github.com:a1exwang/midi_seq_view.git",
+  "description": "Image-Line FL Studio like MIDI sequencer view written in JavaScript.",
+  "license": "MIT",
+  "dependencies": {
+    "jquery": "^3.2.1",
+    "jquery-ui-dist": "^1.12.1",
+    "vue": "^2.2.6"
+  }
+}
