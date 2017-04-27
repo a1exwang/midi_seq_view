@@ -4,3 +4,4 @@ $("#tool-bar").find("> button").click(function () {
     $(this).prop('disabled', true);
     currentTool = $(this);
 });
+

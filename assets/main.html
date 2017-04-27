@@ -28,18 +28,44 @@
             background-color: cornflowerblue;
         }
 
+        #view-cc {
+            position: relative;
+            width: 800px;
+            height: 200px;
+            border: 1px solid #ccc;
+        }
+
+        .cc {
+            position: relative;
+            cursor: default;
+            height: 5px;
+            background-color: lightgreen;
+        }
+        .cc-container {
+            position: absolute;
+            cursor: default;
+            height: 5px;
+            background-color: cornflowerblue;
+        }
+
     </style>
 </head>
 <body>
 <div id="tool-bar">
-    <button id="btn-pencil" disabled>Pencil</button>
-    <button id="btn-pointer">Pointer</button>
+    <button id="btn-pencil" disabled data-shortcut="1">Pencil(1)</button>
+    <button id="btn-pointer" data-shortcut="2">Pointer(2)</button>
+    <button id="btn-eraser" data-shortcut="3">Eraser(3)</button>
 </div>
 <div id="view-seq"></div>
+<br />
+<div id="view-cc"></div>
 </body>
 <script src="../node_modules/vue/dist/vue.min.js"></script>
 <script src="../node_modules/jquery/dist/jquery.min.js"></script>
 <script src="../node_modules/jquery-ui-dist/jquery-ui.js"></script>
 <script src="js/tool_bar.js"></script>
 <script src="js/note_bar.js"></script>
+<script src="js/keys.js"></script>
+<script src="js/cc_bar.js"></script>
+<script src="js/note_names.js"></script>
 </html>
