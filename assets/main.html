@@ -2,17 +2,44 @@
 <html>
 <head>
     <link rel="stylesheet" href="../node_modules/jquery-ui-dist/jquery-ui.min.css" />
+    <style>
+        canvas {
+            z-index:-1;
+        }
+
+        #view-seq {
+            position: relative;
+            width: 800px;
+            height: 500px;
+            border: 1px solid #ccc;
+        }
+        .note {
+            position: relative;
+            cursor: default;
+            width: 80px;
+            height: 20px;
+            background-color: lightgreen;
+        }
+        .note-container {
+            position: absolute;
+            cursor: default;
+            width: 80px;
+            height: 20px;
+            background-color: cornflowerblue;
+        }
+
+    </style>
 </head>
 <body>
 <div id="tool-bar">
     <button id="btn-pencil" disabled>Pencil</button>
     <button id="btn-pointer">Pointer</button>
 </div>
-<div id="view-seq" style="width: 700px; height: 500px; border: 2px solid #ccc; position: relative;">
-</div>
+<div id="view-seq"></div>
 </body>
 <script src="../node_modules/vue/dist/vue.min.js"></script>
 <script src="../node_modules/jquery/dist/jquery.min.js"></script>
 <script src="../node_modules/jquery-ui-dist/jquery-ui.js"></script>
+<script src="js/tool_bar.js"></script>
 <script src="js/note_bar.js"></script>
 </html>
