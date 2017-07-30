@@ -4,7 +4,7 @@ $(function () {
             noteContainer.draggable({
                 containment: "#view-seq",
                 scroll: false,
-                drag: function() {
+                drag: function () {
                     magnetPosition($(this).find(".note"));
                 },
                 stop: function () {
@@ -13,6 +13,7 @@ $(function () {
                 }
             });
         }
+
         function initResizable(noteContainer) {
             noteContainer.resizable({
                 containment: "#view-seq",
@@ -33,6 +34,7 @@ $(function () {
                 }
             });
         }
+
         function magnetPosition(noteEl) {
             var innerNote = noteEl;
             var outerNote = noteEl.parent();
@@ -44,24 +46,26 @@ $(function () {
             var absGridLeft = gridLeft + parent.offset().left;
             innerNote.offset({left: absGridLeft});
             window.moveCC(outerNote.attr('cc_id'), gridLeft);
-            if (Math.abs(left - gridLeft) >= beatWidth/2) {
+            if (Math.abs(left - gridLeft) >= beatWidth / 2) {
                 outerNote.offset({left: absGridLeft});
             }
 
             var gridTop = Math.round(top / noteHeight) * noteHeight;
             var absGridTop = gridTop + parent.offset().top;
             innerNote.offset({top: absGridTop});
-            if (Math.abs(top - gridTop) >= noteHeight/2) {
+            if (Math.abs(top - gridTop) >= noteHeight / 2) {
                 outerNote.offset({top: absGridTop});
             }
             noteEl.get()[0].innerHTML = getNoteName((noteCount - Math.round(gridTop / noteHeight)) + 35);
         }
+
         function syncMagnetPosition(noteEl) {
             var noteContainer = noteEl.parent();
             var off = noteEl.offset();
             noteContainer.offset(off);
             noteEl.offset(off);
         }
+
         var noteEl = noteContainer.find(".note");
         initDraggable(noteContainer);
         initResizable(noteContainer);
@@ -90,7 +94,7 @@ $(function () {
     var noteCount = Math.floor(ctx.height / noteHeight);
     var beatCount = Math.floor(ctx.width / beatWidth);
 
-    function drawBoard(ctx){
+    function drawBoard(ctx) {
         ctx.beginPath();
         for (var iNote = 1; iNote < noteCount; iNote++) {
             ctx.moveTo(0, iNote * noteHeight);
@@ -103,14 +107,19 @@ $(function () {
         ctx.strokeStyle = "black";
         ctx.stroke();
     }
-    drawBoard(ctx);
 
-// setup note
+    drawBoard(ctx);
+    // setup note
     var domNote = "<div class='note-container'><div class='note'></div></div>";
-    viewSeq.click(function(event){
+    viewSeq.css({
+        background: "url(" + c.get()[0].toDataURL() + ")"
+    });
+    viewSeq.click(function(event) {
         if (currentTool && currentTool.attr('id') === "btn-pencil") {
             var noteContainer = $(domNote);
             $(this).append(noteContainer);
+            console.log(event.offsetX);
+            console.log($(this).parent().offset().left);
             noteContainer.css({
                 left: event.offsetX - $(this).parent().offset().left,
                 top: event.offsetY - $(this).parent().offset().top
@@ -118,7 +127,5 @@ $(function () {
             initNote(noteContainer);
             noteContainer.attr('cc_id', window.addCC(noteContainer.position().left, 100, 80))
         }
-    }).css({
-        background: "url(" + c.get()[0].toDataURL() + ")"
     });
 });
